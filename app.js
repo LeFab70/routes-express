@@ -27,7 +27,7 @@ app.get("/primesNumber", (req, res) => {
   //   console.log(number);
   //console.log(primeNumbers(number));
   !reg.test(number)
-    ? (resp = "l'argument doit être un nombre entier positif")
+    ? (resp = "l'argument fourni doit être un nombre entier positif")
     : primeNumbers(number)
     ? (resp = `le nombre ${number} est premier`)
     : (resp = `le nombre ${number} n'est pas premier`);
