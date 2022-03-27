@@ -1,6 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
-import { divisorsOfNumbers, primeNumbers } from "./functions.js";
+import { divisorsOfNumbers, primeNumbers, evenNumbers } from "./functions.js";
 
 dotenv.config();
 const app = express();
@@ -31,6 +31,17 @@ app.get("/primesNumber", (req, res) => {
     : primeNumbers(number)
     ? (resp = `le nombre ${number} est premier`)
     : (resp = `le nombre ${number} n'est pas premier`);
+  res.status(200).send(resp);
+});
+
+app.get("/evenNumbers/:number", (req, res) => {
+  const reg = new RegExp("^[0-9]+$");
+  const number = req.params.number;
+  !reg.test(number)
+    ? (resp = "le paramètre doit-être un entier positif")
+    : !evenNumbers(number)
+    ? (resp = `${number} n'est pas pair`)
+    : (resp = `${number} est pair`);
   res.status(200).send(resp);
 });
 //console.log(port);
